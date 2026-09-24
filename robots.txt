@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bluenovatechin.github.io/Sunrise-Pharma-Equipments/sitemap.xml
