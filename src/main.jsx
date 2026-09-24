@@ -7,7 +7,7 @@ import './styles/global.css';
 const container = document.getElementById('root');
 const app = (
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <App />
     </BrowserRouter>
   </StrictMode>
@@ -15,8 +15,13 @@ const app = (
 
 // Hydrate only when the HTML was pre-rendered for this exact URL. The dev server, and hosts that
 // fall back to another page (e.g. index.html for unknown paths), get a fresh client render instead.
+const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
 const normalize = (p) => p.replace(/\.html$/, '').replace(/(.)\/$/, '$1');
-if (container.hasChildNodes() && normalize(container.dataset.route || '') === normalize(location.pathname)) {
+const currentPath = base && location.pathname.startsWith(base)
+  ? location.pathname.slice(base.length) || '/'
+  : location.pathname;
+
+if (container.hasChildNodes() && normalize(container.dataset.route || '') === normalize(currentPath)) {
   hydrateRoot(container, app);
 } else {
   container.textContent = '';

@@ -6,7 +6,7 @@ import { itemListSchema } from '../seo/schema';
 import { CategoryCard, MachineCard, ProductCard } from '../components/cards';
 import { CheckList, CtaBand, FaqList, LinkArrow, SectionHead, Steps } from '../components/ui';
 import { useQuote } from '../components/quote-context';
-import { firstSentences } from '../site';
+import { firstSentences, asset } from '../site';
 
 const REASONS = [
   { icon: Timer, title: 'Timely delivery', text: 'Clear lead times on every machine and dispatch by road, rail or air.' },
@@ -54,13 +54,13 @@ export default function HomePage() {
             </div>
           </div>
           <div className="hero-visual">
-            <img className="hero-main-img" src="/assets/images/company/company-about.jpg" alt="Stainless steel process vessels at the Sunrise Pharma Equipments works, Vatva GIDC" width="1000" height="565" fetchPriority="high" />
+            <img className="hero-main-img" src={asset('/assets/images/company/company-about.jpg')} alt="Stainless steel process vessels at the Sunrise Pharma Equipments works, Vatva GIDC" width="1000" height="565" fetchPriority="high" />
             <Link to={vtd.path} className="hero-float f1">
               <img src={vtd.image} alt="" width="64" height="64" />
               <span><strong>Vacuum Tray Dryer</strong><span>{vtd.modelRange}</span></span>
             </Link>
             <Link to="/products/ointment-manufacturing-plant" className="hero-float f2">
-              <img src="/assets/images/brochure/ointment-manufacturing-plant.jpg" alt="" width="64" height="64" />
+              <img src={asset('/assets/images/brochure/ointment-manufacturing-plant.jpg')} alt="" width="64" height="64" />
               <span><strong>Ointment plants</strong><span>300–1000 kg batches</span></span>
             </Link>
           </div>
@@ -103,7 +103,7 @@ export default function HomePage() {
             <div>
               <h3 style={{ marginBottom: 16 }}>Bottle packaging line</h3>
               <div className="flow-img">
-                <img src="/assets/images/brochure/packaging-line.jpg" alt="Automatic bottle packaging line: unscrambler, air jet cleaning, liquid filling, capping, labelling and shrink wrap" width="793" height="192" loading="lazy" />
+                <img src={asset('/assets/images/brochure/packaging-line.jpg')} alt="Automatic bottle packaging line: unscrambler, air jet cleaning, liquid filling, capping, labelling and shrink wrap" width="793" height="192" loading="lazy" />
               </div>
               <div className="flow cols-3">
                 {brochure.packagingLine.map((step, i) => (
@@ -156,7 +156,7 @@ export default function HomePage() {
       <section className="section">
         <div className="container split">
           <div className="media-frame" style={{ aspectRatio: '505 / 410' }}>
-            <img src="/assets/images/company/about-intro-feature.jpg" alt="Vacuum tray dryer being built at the Sunrise Pharma Equipments works" width="505" height="410" loading="lazy" />
+            <img src={asset('/assets/images/company/about-intro-feature.jpg')} alt="Vacuum tray dryer being built at the Sunrise Pharma Equipments works" width="505" height="410" loading="lazy" />
           </div>
           <div>
             <SectionHead eyebrow="About us" title={`${company.name}, Ahmedabad`} />
@@ -245,7 +245,7 @@ export default function HomePage() {
               title="Download Sunrise Pharma Equipments Brochure"
             >
               <img
-                src="/assets/brochure/pages/page-1.jpg"
+                src={asset('/assets/brochure/pages/page-1.jpg')}
                 alt="Sunrise Pharma Equipments Process & Packaging Machinery Brochure"
                 width="280"
                 height="396"

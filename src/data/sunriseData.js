@@ -3901,5 +3901,30 @@ export function searchProducts(query) {
 
 export const formatPrice = (price) => (price ? price.display : 'Price on request');
 
+const base = (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) || '/';
+if (base && base !== '/') {
+  const cleanBase = base.replace(/\/$/, '');
+  const visited = new Set();
+  const applyBase = (obj) => {
+    if (!obj || typeof obj !== 'object' || visited.has(obj)) return;
+    visited.add(obj);
+    for (const key of Object.keys(obj)) {
+      const val = obj[key];
+      if (typeof val === 'string' && val.startsWith('/assets/')) {
+        obj[key] = cleanBase + val;
+      } else if (val && typeof val === 'object') {
+        applyBase(val);
+      }
+    }
+  };
+  applyBase(company);
+  applyBase(categories);
+  applyBase(products);
+  applyBase(brochureMachines);
+  applyBase(brochure);
+  applyBase(pages);
+  applyBase(assets);
+}
+
 const sunriseData = { company, categories, products, brochureMachines, brochure, standardTradeTerms, pages, navigation, forms, assets };
 export default sunriseData;

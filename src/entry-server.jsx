@@ -10,9 +10,11 @@ export { navigation } from './data/sunriseData';
 /** Render one route to HTML + the <head> tags its page declared. */
 export function render(url) {
   const head = { current: null };
+  const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+  const resolvedUrl = url.startsWith('/') ? base + url : `${base}/${url}`;
   const html = renderToString(
     <HeadContext.Provider value={head}>
-      <StaticRouter location={url}>
+      <StaticRouter location={resolvedUrl} basename={base}>
         <App />
       </StaticRouter>
     </HeadContext.Provider>,

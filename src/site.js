@@ -1,7 +1,16 @@
 import { company, categories, products, brochureMachines } from './data/sunriseData';
 
 /** Public URL of the site — used for canonical links, sitemap.xml and social previews. */
-export const SITE_URL = company.websites.primary;
+export const SITE_URL = 'https://bluenovatechin.github.io/Sunrise-Pharma-Equipments';
+
+/** Prepends base URL to static assets like /assets/images/... */
+export const asset = (path) => {
+  if (!path) return path;
+  if (/^(https?:|\/\/|data:|blob:)/i.test(path)) return path;
+  const base = (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) || '/';
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return base.endsWith('/') ? `${base}${cleanPath}` : `${base}/${cleanPath}`;
+};
 
 export const tel = (phone) => `tel:${phone.tel}`;
 export const whatsappLink = (text = '') =>

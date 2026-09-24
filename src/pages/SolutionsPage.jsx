@@ -4,6 +4,7 @@ import { brochure, brochureMachines } from '../data/sunriseData';
 import Seo from '../seo/Seo';
 import { breadcrumbSchema, itemListSchema } from '../seo/schema';
 import { CtaBand, PageHero, SectionHead } from '../components/ui';
+import { asset } from '../site';
 
 const crumbs = [{ label: 'Home', to: '/' }, { label: 'Solutions', to: '/solutions' }];
 
@@ -56,7 +57,7 @@ export default function SolutionsPage() {
         <div className="container">
           <SectionHead eyebrow="Part 2" title="Bottle packaging line" lead="Empty bottles go in one end; filled, capped, labelled and inspected bottles come out the other." />
           <div className="flow-img">
-            <img src="/assets/images/brochure/packaging-line.jpg" alt="Automatic bottle packaging line" width="793" height="192" loading="lazy" />
+            <img src={asset('/assets/images/brochure/packaging-line.jpg')} alt="Automatic bottle packaging line" width="793" height="192" loading="lazy" />
           </div>
           <div className="flow" style={{ marginBottom: 48 }}>
             {brochure.packagingLine.map((step, i) => <div key={step} className="flow-step"><b>Step {i + 1}</b>{step}</div>)}

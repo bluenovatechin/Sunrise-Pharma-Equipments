@@ -1,7 +1,17 @@
 import { company, getCategoryOf } from '../data/sunriseData';
 import { SITE_URL } from '../site';
 
-const abs = (path) => SITE_URL + path;
+const abs = (path) => {
+  if (!path) return '';
+  if (/^https?:\/\//i.test(path)) return path;
+  const base = (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) || '/';
+  const cleanBase = base.replace(/\/$/, '');
+  let p = path;
+  if (cleanBase && p.startsWith(cleanBase)) {
+    p = p.slice(cleanBase.length);
+  }
+  return SITE_URL + (p.startsWith('/') ? p : '/' + p);
+};
 
 export function organizationSchema() {
   const a = company.addresses.office;

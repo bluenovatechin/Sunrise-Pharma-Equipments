@@ -2,16 +2,17 @@ import { company, pages, products } from '../data/sunriseData';
 import Seo from '../seo/Seo';
 import { breadcrumbSchema } from '../seo/schema';
 import { CheckList, CtaBand, PageHero, SectionHead } from '../components/ui';
+import { asset } from '../site';
 
 const crumbs = [{ label: 'Home', to: '/' }, { label: 'About Us', to: '/about' }];
 
 const GALLERY = [
-  ['/assets/images/company/company-about.jpg', 'Process vessels under fabrication'],
-  ['/assets/images/products/vacuum-tray-dryer/gallery-extra-vtd-1.jpeg', 'Vacuum tray dryer with condenser'],
-  ['/assets/images/products/ointment-manufacturing-plant/pharmaceutical-ointment-manufacturing-plant.jpeg', 'Ointment manufacturing plant'],
-  ['/assets/images/products/vacuum-tray-dryer/automatic-ss-vacuum-tray-dryer.jpeg', 'Automatic SS vacuum tray dryer'],
-  ['/assets/images/products/ointment-manufacturing-plant/gallery-extra-ointment-plant.jpeg', 'Ointment plant vessels & platform'],
-  ['/assets/images/company/about-intro-feature.jpg', 'Vacuum tray dryer at our works'],
+  [asset('/assets/images/company/company-about.jpg'), 'Process vessels under fabrication'],
+  [asset('/assets/images/products/vacuum-tray-dryer/gallery-extra-vtd-1.jpeg'), 'Vacuum tray dryer with condenser'],
+  [asset('/assets/images/products/ointment-manufacturing-plant/pharmaceutical-ointment-manufacturing-plant.jpeg'), 'Ointment manufacturing plant'],
+  [asset('/assets/images/products/vacuum-tray-dryer/automatic-ss-vacuum-tray-dryer.jpeg'), 'Automatic SS vacuum tray dryer'],
+  [asset('/assets/images/products/ointment-manufacturing-plant/gallery-extra-ointment-plant.jpeg'), 'Ointment plant vessels & platform'],
+  [asset('/assets/images/company/about-intro-feature.jpg'), 'Vacuum tray dryer at our works'],
 ];
 
 export default function AboutPage() {
@@ -47,7 +48,7 @@ export default function AboutPage() {
             <div className="quote" style={{ marginTop: 24 }}>{profile.intro[1]}</div>
           </div>
           <div className="media-frame" style={{ aspectRatio: '1000 / 565' }}>
-            <img src="/assets/images/company/company-about.jpg" alt="Stainless steel vessels at the Sunrise Pharma Equipments works" width="1000" height="565" />
+            <img src={asset('/assets/images/company/company-about.jpg')} alt="Stainless steel vessels at the Sunrise Pharma Equipments works" width="1000" height="565" />
           </div>
         </div>
       </section>
@@ -96,7 +97,7 @@ export default function AboutPage() {
             {infra.paragraphs.map((p) => <p key={p} className="muted">{p}</p>)}
           </div>
           <div className="media-frame" style={{ aspectRatio: '505 / 410' }}>
-            <img src="/assets/images/company/about-intro-feature.jpg" alt="Vacuum tray dryer under construction at our works" width="505" height="410" loading="lazy" />
+            <img src={asset('/assets/images/company/about-intro-feature.jpg')} alt="Vacuum tray dryer under construction at our works" width="505" height="410" loading="lazy" />
           </div>
         </div>
       </section>

@@ -10,8 +10,18 @@ const DEFAULT_IMAGE = '/assets/images/company/company-about.jpg';
 
 export function buildHead({ title, description, path = '/', image = DEFAULT_IMAGE, type = 'website', jsonLd = [], noindex = false }) {
   const fullTitle = title ? `${title} | ${company.name}` : `${company.name} — ${company.headline}`;
-  const url = SITE_URL + (path === '/' ? '/' : path);
-  const img = image.startsWith('http') ? image : SITE_URL + image;
+  const base = (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) || '/';
+  const cleanBase = base.replace(/\/$/, '');
+  let cleanPath = path;
+  if (cleanBase && cleanPath.startsWith(cleanBase)) {
+    cleanPath = cleanPath.slice(cleanBase.length);
+  }
+  const url = SITE_URL + (cleanPath === '/' ? '/' : cleanPath.startsWith('/') ? cleanPath : '/' + cleanPath);
+  let cleanImage = image;
+  if (cleanBase && cleanImage.startsWith(cleanBase)) {
+    cleanImage = cleanImage.slice(cleanBase.length);
+  }
+  const img = cleanImage.startsWith('http') ? cleanImage : SITE_URL + (cleanImage.startsWith('/') ? cleanImage : '/' + cleanImage);
   return {
     title: fullTitle,
     meta: [
