@@ -73,6 +73,7 @@ ${routes.map((u) => `  <url><loc>${siteBase}${u === '/' ? '/' : u}</loc><lastmod
 </urlset>
 `);
 write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${siteBase}/sitemap.xml\n`);
+write('.nojekyll', '');
 
 fs.rmSync(ssrDir, { recursive: true, force: true });
 console.log(`Pre-rendered ${routes.length} pages + 404, ${redirects} legacy redirects, sitemap.xml, robots.txt`);
